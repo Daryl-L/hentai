@@ -521,7 +521,7 @@ class BangumiController extends Controller
     public function timeline(Request $request)
     {
         $bangumiRepository = new BangumiRepository();
-        $bangumis = $bangumiRepository->bangumiWithSerialization();
+        $bangumis = $bangumiRepository->serializingBangumis();
         $serializations = [
             0 => [],
             1 => [],

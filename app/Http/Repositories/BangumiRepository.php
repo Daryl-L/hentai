@@ -330,10 +330,13 @@ class BangumiRepository extends Repository
         }
     }
 
-    public function bangumiWithSerialization() : array
+    public function serializingBangumis() : array
     {
         $bangumis = $this->RedisArray('bangumi:serialization', function() {
-            $bangumis = Bangumi::with('serialization')->where('serialization_status', 1)->get();
+            $bangumis = Bangumi::with('serialization:bangumi_id,broadcast_time,current,url')
+                ->where('serialization_status', 1)
+                ->get(['id','avatar','title']);
+
             return $bangumis->toArray();
         });
 
